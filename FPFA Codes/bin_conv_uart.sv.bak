@@ -1,0 +1,78 @@
+module bin_conv_uart #(parameter BAUD_DIV = 9600) (
+    input clk,
+    input rst_n,
+    input rx,
+    output tx,
+    output [7:0] leds
+);
+
+    wire [7:0] rx_data;
+    wire rx_done;
+    reg [7:0] uart_tx_data;
+    reg tx_start;
+    wire tx_busy;
+
+    reg [7:0] image [0:783];  // 28x28 image storage
+    reg [7:0] kernel [0:8] = {8'b11100011, 8'b00011000, 8'b11100011}; // 3x3 binary kernel
+    reg [9:0] conv_result [0:9];  // Output feature map (dummy 10 values)
+
+    integer i, j, sum;
+    reg [9:0] pixel_count;
+
+    // UART Receiver Instance
+    uart_rx #( 
+        .BAUD_DIV(BAUD_DIV)
+    ) uart_receiver (
+        .clk(clk),
+        .rst_n(rst_n),
+        .rx(rx),
+        .data_out(rx_data),
+        .data_valid(rx_done),
+        .leds(leds)
+    );
+
+    // UART Transmitter Instance
+    uart_tx #( 
+        .BAUD_DIV(BAUD_DIV)
+    ) uart_transmitter (
+        .clk(clk),
+        .rst_n(rst_n),
+        .tx_start(tx_start),
+        .data_in(uart_tx_data),
+        .tx_busy(tx_busy),
+        .tx(tx)
+    );
+
+    always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            for (i = 0; i < 784; i = i + 1)
+                image[i] <= 0;
+            pixel_count <= 0;
+        end else if (rx_done && pixel_count < 784) begin
+            image[pixel_count] <= rx_data;
+            pixel_count <= pixel_count + 1;
+        end
+    end
+
+    always @(posedge clk) begin
+        if (pixel_count == 784) begin  // Start convolution after receiving full image
+            for (i = 0; i < 9; i = i + 1) begin
+                sum = 0;
+                for (j = 0; j < 9; j = j + 1) begin
+                    sum = sum + (^ (image[i*9+j] ~ kernel[j])); // XNOR + Popcount
+                end
+                conv_result[i] <= sum;
+            end
+        end
+    end
+
+    always @(posedge clk) begin
+        if (!tx_busy) begin
+            uart_tx_data <= conv_result[0];
+            tx_start <= 1;
+        end else begin
+            tx_start <= 0;
+        end
+    end
+
+endmodule

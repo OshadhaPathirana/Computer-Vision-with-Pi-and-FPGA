@@ -1,0 +1,2 @@
+Warning (10268): Verilog HDL information at uart_rx.sv(16): always construct contains both blocking and non-blocking assignments File: E:/Data_Files/Educational/Computer Vision/FPFA Codes/uart_rx.sv Line: 16
+Warning (10268): Verilog HDL information at bin_conv_uart.sv(67): always construct contains both blocking and non-blocking assignments File: E:/Data_Files/Educational/Computer Vision/FPFA Codes/bin_conv_uart.sv Line: 67
