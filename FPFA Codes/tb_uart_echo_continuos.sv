@@ -1,0 +1,103 @@
+`timescale 1ns / 1ps
+module tb_uart_echo_continuos;
+
+    // Parameters
+    localparam CLK_PERIOD = 20;  // 50MHz
+    localparam BIT_PERIOD = 8680;  // 115200 baud
+    
+    // Signals
+    logic clk;
+    logic rst_n;
+    logic uart_rx;
+    logic uart_tx;
+    logic led_rx;
+    logic led_tx;
+    logic [7:0] leds;
+    
+    // Instantiate DUT
+    uart_echo_continuos #(
+        .BUFFER_SIZE(16),
+        .TIMEOUT_CYCLES(1000)
+    ) dut (
+        .clk,
+        .rst_n,
+        .uart_rx,
+        .uart_tx,
+        .led_rx,
+        .led_tx,
+        .leds
+    );
+    
+    // Clock generation
+    initial begin
+        clk = 0;
+        forever #(CLK_PERIOD/2) clk = ~clk;
+    end
+    
+    // UART Transmit Task
+    task uart_send_byte(input [7:0] data);
+        uart_rx = 0;  // Start bit
+        #BIT_PERIOD;
+        for (int i = 0; i < 8; i++) begin
+            uart_rx = data[i];
+            #BIT_PERIOD;
+        end
+        uart_rx = 1;  // Stop bit
+        #BIT_PERIOD;
+    endtask
+    
+    // Main test sequence
+    initial begin
+        // Initialize
+        rst_n = 0;
+        uart_rx = 1;
+        #100;
+        rst_n = 1;
+        #100;
+        
+        // Send test sequence
+        uart_send_byte(8'hAA);
+        uart_send_byte(8'h55);
+        uart_send_byte(8'h01);
+        uart_send_byte(8'h02);
+        
+        // Wait for timeout and transmission
+        #(BIT_PERIOD * 100);
+        
+        // Verify transmission
+        $display("Received bytes should be: AA, 55, 01, 02");
+        
+        // Send more data
+        #10000;
+        uart_send_byte(8'h03);
+        uart_send_byte(8'h04);
+        
+        // Wait for timeout and transmission
+        #(BIT_PERIOD * 100);
+        
+        $stop;
+    end
+    
+    // UART Receive Monitor
+    logic [7:0] received_data;  // Declare received_data
+    initial begin
+        forever begin
+            wait(uart_tx === 0);  // Detect start bit
+            #(BIT_PERIOD/2);
+            
+            if (uart_tx !== 0) continue;  // Verify start bit
+            
+            // Read data bits
+            for (int i = 0; i < 8; i++) begin
+                #BIT_PERIOD;
+                received_data[i] = uart_tx;
+            end
+            
+            // Verify stop bit
+            #BIT_PERIOD;
+            if (uart_tx !== 1) $error("Stop bit error");
+            
+            $display("Received byte: %h", received_data);
+        end
+    end
+endmodule

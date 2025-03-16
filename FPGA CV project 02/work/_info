@@ -1,0 +1,218 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dE:/Data_Files/Educational/Computer Vision/FPGA CV project 02
+vaccelerator
+Z1 !s110 1741457383
+!i10b 1
+!s100 3nahDI@FUmAdc@1lhCI9A0
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+Iih8NeAKTRZ=bf7oLz26hT0
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z4 w1599194729
+8E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/accelerator.v
+FE:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/accelerator.v
+!i122 12
+L0 1 13
+Z5 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z6 !s108 1741457383.000000
+!s107 E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/accelerator.v|
+!s90 -reportprogress|300|-work|work|E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/accelerator.v|
+!i113 1
+Z7 o-work work
+Z8 tCvgOpt 0
+vregfile
+R1
+!i10b 1
+!s100 hUTe1T<z=V`QW_ehAed;11
+R2
+I@bCY<^_V]BQ`H>`;L]E;U1
+R3
+R0
+R4
+8E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/regfile.v
+FE:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/regfile.v
+!i122 13
+L0 1 30
+R5
+r1
+!s85 0
+31
+R6
+!s107 E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/regfile.v|
+!s90 -reportprogress|300|-work|work|E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/regfile.v|
+!i113 1
+R7
+R8
+vregister
+R1
+!i10b 1
+!s100 8d9hj9lmKZojgGbA]e1`T2
+R2
+IaE9TjJ@R?WEzU;gFJz86?2
+R3
+R0
+R4
+8E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/register.v
+FE:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/register.v
+!i122 14
+L0 9 18
+R5
+r1
+!s85 0
+31
+R6
+!s107 E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/register.v|
+!s90 -reportprogress|300|-work|work|E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/register.v|
+!i113 1
+R7
+R8
+vtest_rx
+Z9 !s110 1741457396
+!i10b 1
+!s100 ?6F]cBfIjcc[RB<C_:BLV1
+R2
+IMcV9HG<OOfBiD?cgGAabW2
+R3
+R0
+R4
+8E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/test/rx_tb.v
+FE:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/test/rx_tb.v
+!i122 18
+L0 20 44
+R5
+r1
+!s85 0
+31
+Z10 !s108 1741457396.000000
+!s107 E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/test/rx_tb.v|
+!s90 -reportprogress|300|-work|work|E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/test/rx_tb.v|
+!i113 1
+R7
+R8
+vtest_top_level
+R9
+!i10b 1
+!s100 KiLHCB8JNI:C;ClF[>L6R0
+R2
+IK;SnhSMf2RDH;KFAZKM4f0
+R3
+R0
+R4
+8E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/test/top_level_tb.v
+FE:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/test/top_level_tb.v
+!i122 19
+L0 16 62
+R5
+r1
+!s85 0
+31
+R10
+!s107 E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/test/top_level_tb.v|
+!s90 -reportprogress|300|-work|work|E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/test/top_level_tb.v|
+!i113 1
+R7
+R8
+vtest_tx
+R9
+!i10b 1
+!s100 2FG2<H?n1kL1_>mgcV_T^3
+R2
+IlKlh>Hn=NDz5l;S?LD83j3
+R3
+R0
+R4
+8E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/test/tx_tb.v
+FE:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/test/tx_tb.v
+!i122 20
+L0 21 31
+R5
+r1
+!s85 0
+31
+R10
+!s107 E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/test/tx_tb.v|
+!s90 -reportprogress|300|-work|work|E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/test/tx_tb.v|
+!i113 1
+R7
+R8
+vtop_level
+R1
+!i10b 1
+!s100 V3U9^kNhdNVbm?KAEacl[1
+R2
+IM<k6D`f2>X;KBTcK::<LW3
+R3
+R0
+R4
+8E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/top_level.v
+FE:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/top_level.v
+!i122 15
+L0 1 163
+R5
+r1
+!s85 0
+31
+R6
+!s107 E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/top_level.v|
+!s90 -reportprogress|300|-work|work|E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/top_level.v|
+!i113 1
+R7
+R8
+vuart_rx
+R1
+!i10b 1
+!s100 PE3J@56RDUaUX1C`[zEoc2
+R2
+I_MbBimzbZGD3OZQI4SUZh3
+R3
+R0
+w1741457258
+8E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/uart_rx.v
+FE:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/uart_rx.v
+!i122 16
+L0 1 111
+R5
+r1
+!s85 0
+31
+R6
+!s107 E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/uart_rx.v|
+!s90 -reportprogress|300|-work|work|E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/uart_rx.v|
+!i113 1
+R7
+R8
+vuart_tx
+!s110 1741457384
+!i10b 1
+!s100 Bk`QIiWjBY=VV^29MXj6?3
+R2
+IbfOe5ThzmB2D^Fb=iQl0d2
+R3
+R0
+R4
+8E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/uart_tx.v
+FE:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/uart_tx.v
+!i122 17
+L0 22 144
+R5
+r1
+!s85 0
+31
+R6
+!s107 E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/uart_tx.v|
+!s90 -reportprogress|300|-work|work|E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/uart_tx.v|
+!i113 1
+R7
+R8

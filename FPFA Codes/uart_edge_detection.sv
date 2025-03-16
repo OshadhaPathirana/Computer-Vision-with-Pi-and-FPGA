@@ -4,23 +4,33 @@ module uart_edge_detection (
     input logic uart_rx,      // UART RX input
     output logic uart_tx,     // UART TX output
     output logic led_rx,      // RX indicator LED
-    output logic led_tx       // TX indicator LED
+    output logic led_tx,      // TX indicator LED
+    output logic data_ready   // GPIO to indicate data ready to Pi
 );
 
     parameter CLOCK_FREQ = 50000000;   // FPGA clock (50MHz)
     parameter BAUD_RATE  = 115200;
     parameter BAUD_DIV   = CLOCK_FREQ / BAUD_RATE;
+    parameter THRESHOLD  = 4;          // Threshold for binary convolution sum
 
+    // UART internal signals
     logic [7:0] rx_data;
     logic rx_done;
     logic [7:0] processed_data;
     logic tx_start;
     logic tx_busy;
 
-    // 3x3 Pixel Buffer (Shift Register)
-    logic [7:0] pixel_buffer [0:8];
+    // Buffers and counters
+    logic [7:0] image_data [0:63];    // 8x8 image buffer
+    logic [7:0] conv_result [0:35];   // 6x6 convolution result buffer
+    logic [5:0] rx_counter;           // Counter for receiving data (0-63)
+    logic [5:0] tx_counter;           // Counter for sending data (0-35)
 
-    // UART Receiver
+    // FSM state declaration
+    typedef enum logic [1:0] {IDLE, RECEIVE, PROCESS, SEND} state_t;
+    state_t state, next_state;
+
+    // UART Receiver instance
     uart_rx #(
         .BAUD_DIV(BAUD_DIV)
     ) uart_receiver (
@@ -31,56 +41,7 @@ module uart_edge_detection (
         .data_valid(rx_done)
     );
 
-    // Update 3x3 Window Buffer
-    always_ff @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
-            pixel_buffer[0] <= 8'd0; pixel_buffer[1] <= 8'd0; pixel_buffer[2] <= 8'd0;
-            pixel_buffer[3] <= 8'd0; pixel_buffer[4] <= 8'd0; pixel_buffer[5] <= 8'd0;
-            pixel_buffer[6] <= 8'd0; pixel_buffer[7] <= 8'd0; pixel_buffer[8] <= 8'd0;
-        end else if (rx_done) begin
-            pixel_buffer[0] <= pixel_buffer[1]; 
-            pixel_buffer[1] <= pixel_buffer[2]; 
-            pixel_buffer[2] <= rx_data;
-            
-            pixel_buffer[3] <= pixel_buffer[4]; 
-            pixel_buffer[4] <= pixel_buffer[5]; 
-            pixel_buffer[5] <= pixel_buffer[2];
-
-            pixel_buffer[6] <= pixel_buffer[7]; 
-            pixel_buffer[7] <= pixel_buffer[8]; 
-            pixel_buffer[8] <= pixel_buffer[5];
-        end
-    end
-
-    // Sobel Operator Computation
-    logic signed [10:0] Gx, Gy;
-    logic [7:0] G;
-
-    // Absolute Value Computation for Gx and Gy
-    logic signed [10:0] abs_Gx, abs_Gy;
-
-    always_comb begin
-        Gx = (-pixel_buffer[0] + pixel_buffer[2]) + (-2 * pixel_buffer[3] + 2 * pixel_buffer[5]) + (-pixel_buffer[6] + pixel_buffer[8]);
-        Gy = (-pixel_buffer[0] - 2 * pixel_buffer[1] - pixel_buffer[2]) + (pixel_buffer[6] + 2 * pixel_buffer[7] + pixel_buffer[8]);
-
-        // Absolute values of Gx and Gy
-        abs_Gx = (Gx < 0) ? -Gx : Gx;
-        abs_Gy = (Gy < 0) ? -Gy : Gy;
-
-        // Approximate gradient magnitude
-        G = (abs_Gx + abs_Gy) > 255 ? 255 : (abs_Gx + abs_Gy);
-    end
-
-    // Processed Edge Pixel
-    always_ff @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
-            processed_data <= 8'b0;
-        end else if (rx_done) begin
-            processed_data <= G;
-        end
-    end
-
-    // UART Transmitter
+    // UART Transmitter instance
     uart_tx #(
         .BAUD_DIV(BAUD_DIV)
     ) uart_transmitter (
@@ -92,25 +53,91 @@ module uart_edge_detection (
         .tx(uart_tx)
     );
 
-    // Transmission Control Logic
+    // FSM State Transition
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n)
+            state <= IDLE;
+        else
+            state <= next_state;
+    end
+
+    // FSM Next State Logic
+    always_comb begin
+        case (state)
+            IDLE:      next_state = (rx_done) ? RECEIVE : IDLE;
+            RECEIVE:   next_state = (rx_counter == 6'd63) ? PROCESS : RECEIVE;
+            PROCESS:   next_state = SEND;
+            SEND:      next_state = (tx_counter == 6'd36 && !tx_busy) ? IDLE : SEND;
+            default:   next_state = IDLE;
+        endcase
+    end
+
+    // RX Counter and Data Storing Logic
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            tx_start <= 1'b0;
-            led_rx   <= 1'b0;
-            led_tx   <= 1'b0;
-        end else begin
-            if (rx_done) begin
-                tx_start <= 1'b1;  
-                led_rx   <= 1'b1;  
-            end else if (tx_start && !tx_busy) begin
-                tx_start <= 1'b0;
-                led_rx   <= 1'b0;
-                led_tx   <= 1'b1;
-            end else if (tx_busy) begin
-                led_tx   <= 1'b1;
-            end else begin
-                led_tx   <= 1'b0;
+            rx_counter <= 6'd0;
+        end else if (state == RECEIVE && rx_done) begin
+            image_data[rx_counter] <= rx_data;
+            rx_counter <= rx_counter + 1;
+        end else if (state == IDLE) begin
+            rx_counter <= 6'd0;
+        end
+    end
+
+    // Convolution Logic
+    integer i, j, k, l;
+    reg [3:0] sum;
+
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            for (i = 0; i < 36; i = i + 1)
+                conv_result[i] <= 8'd0;
+        end else if (state == PROCESS) begin
+            for (i = 0; i < 6; i = i + 1) begin
+                for (j = 0; j < 6; j = j + 1) begin
+                    sum = 0;
+                    for (k = 0; k < 3; k = k + 1) begin
+                        for (l = 0; l < 3; l = l + 1) begin
+                            sum = sum + image_data[(i + k) * 8 + (j + l)][0];
+                        end
+                    end
+                    conv_result[i * 6 + j] <= (sum >= THRESHOLD) ? 8'b1 : 8'b0;
+                end
             end
         end
     end
+
+    // TX Counter and Data Sending Logic
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            tx_counter <= 6'd0;
+            tx_start <= 1'b0;
+            processed_data <= 8'd0;
+        end else if (state == SEND) begin
+            if (!tx_busy && !tx_start) begin
+                tx_start <= 1'b1;
+                processed_data <= conv_result[tx_counter];
+                tx_counter <= tx_counter + 1;
+            end else if (tx_start && tx_busy) begin
+                tx_start <= 1'b0;
+            end
+        end else begin
+            tx_counter <= 6'd0;
+            tx_start <= 1'b0;
+        end
+    end
+
+    // LED and Data Ready Indicators
+    always_ff @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            led_rx <= 1'b0;
+            led_tx <= 1'b0;
+            data_ready <= 1'b0;
+        end else begin
+            led_rx <= (state == RECEIVE) ? rx_done : 1'b0;
+            led_tx <= (state == SEND) ? ~tx_busy : 1'b0;
+            data_ready <= (state == SEND); // High when ready to send
+        end
+    end
+
 endmodule

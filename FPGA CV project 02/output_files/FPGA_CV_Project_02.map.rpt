@@ -1,0 +1,501 @@
+Analysis & Synthesis report for FPGA_CV_Project_02
+Sun Mar 16 16:07:59 2025
+Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. State Machine - |top_level|r_SM_Main
+  9. State Machine - |top_level|uart_tx:transmitter|r_SM_Main
+ 10. State Machine - |top_level|uart_rx:recv|r_SM_Main
+ 11. Registers Removed During Synthesis
+ 12. General Register Statistics
+ 13. Inverted Register Statistics
+ 14. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 15. Parameter Settings for User Entity Instance: uart_rx:recv
+ 16. Parameter Settings for User Entity Instance: uart_tx:transmitter
+ 17. Port Connectivity Checks: "uart_tx:transmitter"
+ 18. Port Connectivity Checks: "uart_rx:recv"
+ 19. Post-Synthesis Netlist Statistics for Top Partition
+ 20. Elapsed Time Per Partition
+ 21. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2020  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++------------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Sun Mar 16 16:07:59 2025       ;
+; Quartus Prime Version              ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
+; Revision Name                      ; FPGA_CV_Project_02                          ;
+; Top-level Entity Name              ; top_level                                   ;
+; Family                             ; MAX 10                                      ;
+; Total logic elements               ; 235                                         ;
+;     Total combinational functions  ; 220                                         ;
+;     Dedicated logic registers      ; 123                                         ;
+; Total registers                    ; 123                                         ;
+; Total pins                         ; 20                                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
+; UFM blocks                         ; 0                                           ;
+; ADC blocks                         ; 0                                           ;
++------------------------------------+---------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                              ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                           ; Setting            ; Default Value      ;
++------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                           ; 10M50DAF484C7G     ;                    ;
+; Top-level entity name                                            ; top_level          ; FPGA_CV_Project_02 ;
+; Family name                                                      ; MAX 10             ; Cyclone V          ;
+; Use smart compilation                                            ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                      ; Off                ; Off                ;
+; Restructure Multiplexers                                         ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                              ; Off                ; Off                ;
+; Preserve fewer node names                                        ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                    ; Enable             ; Enable             ;
+; Verilog Version                                                  ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                     ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                         ; Auto               ; Auto               ;
+; Safe State Machine                                               ; Off                ; Off                ;
+; Extract Verilog State Machines                                   ; On                 ; On                 ;
+; Extract VHDL State Machines                                      ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                       ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                   ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                          ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                        ; On                 ; On                 ;
+; Parallel Synthesis                                               ; On                 ; On                 ;
+; DSP Block Balancing                                              ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                               ; On                 ; On                 ;
+; Power-Up Don't Care                                              ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                     ; Off                ; Off                ;
+; Remove Duplicate Registers                                       ; On                 ; On                 ;
+; Ignore CARRY Buffers                                             ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                           ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                            ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                        ; Off                ; Off                ;
+; Ignore LCELL Buffers                                             ; Off                ; Off                ;
+; Ignore SOFT Buffers                                              ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                   ; Off                ; Off                ;
+; Optimization Technique                                           ; Balanced           ; Balanced           ;
+; Carry Chain Length                                               ; 70                 ; 70                 ;
+; Auto Carry Chains                                                ; On                 ; On                 ;
+; Auto Open-Drain Pins                                             ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                            ; Off                ; Off                ;
+; Auto ROM Replacement                                             ; On                 ; On                 ;
+; Auto RAM Replacement                                             ; On                 ; On                 ;
+; Auto DSP Block Replacement                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                  ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                  ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                    ; On                 ; On                 ;
+; Strict RAM Replacement                                           ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                           ; Off                ; Off                ;
+; Auto RAM Block Balancing                                         ; On                 ; On                 ;
+; Auto RAM to Logic Cell Conversion                                ; Off                ; Off                ;
+; Auto Resource Sharing                                            ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                               ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                    ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing              ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                ; Off                ; Off                ;
+; Timing-Driven Synthesis                                          ; On                 ; On                 ;
+; Report Parameter Settings                                        ; On                 ; On                 ;
+; Report Source Assignments                                        ; On                 ; On                 ;
+; Report Connectivity Checks                                       ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                               ; Off                ; Off                ;
+; Synchronization Register Chain Length                            ; 2                  ; 2                  ;
+; Power Optimization During Synthesis                              ; Normal compilation ; Normal compilation ;
+; HDL message level                                                ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                  ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report         ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report               ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report        ; 100                ; 100                ;
+; Clock MUX Protection                                             ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                      ; Off                ; Off                ;
+; Block Design Naming                                              ; Auto               ; Auto               ;
+; SDC constraint protection                                        ; Off                ; Off                ;
+; Synthesis Effort                                                 ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal     ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                             ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                               ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                      ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                           ; On                 ; On                 ;
++------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 12          ;
+; Maximum allowed            ; 12          ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 12          ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-12        ;   0.0%      ;
++----------------------------+-------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                  ;
++---------------------------------------------------+-----------------+------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path                  ; Used in Netlist ; File Type              ; File Name with Absolute Path                                                                                   ; Library ;
++---------------------------------------------------+-----------------+------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+; fpga_accelerator-master/src/modules/uart_tx.v     ; yes             ; User Verilog HDL File  ; E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/uart_tx.v     ;         ;
+; fpga_accelerator-master/src/modules/uart_rx.v     ; yes             ; User Verilog HDL File  ; E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/uart_rx.v     ;         ;
+; fpga_accelerator-master/src/modules/top_level.v   ; yes             ; User Verilog HDL File  ; E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/top_level.v   ;         ;
+; fpga_accelerator-master/src/modules/accelerator.v ; yes             ; User Verilog HDL File  ; E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/accelerator.v ;         ;
++---------------------------------------------------+-----------------+------------------------+----------------------------------------------------------------------------------------------------------------+---------+
+
+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimated Total logic elements              ; 235       ;
+;                                             ;           ;
+; Total combinational functions               ; 220       ;
+; Logic element usage by number of LUT inputs ;           ;
+;     -- 4 input functions                    ; 91        ;
+;     -- 3 input functions                    ; 40        ;
+;     -- <=2 input functions                  ; 89        ;
+;                                             ;           ;
+; Logic elements by mode                      ;           ;
+;     -- normal mode                          ; 186       ;
+;     -- arithmetic mode                      ; 34        ;
+;                                             ;           ;
+; Total registers                             ; 123       ;
+;     -- Dedicated logic registers            ; 123       ;
+;     -- I/O registers                        ; 0         ;
+;                                             ;           ;
+; I/O pins                                    ; 20        ;
+;                                             ;           ;
+; Embedded Multiplier 9-bit elements          ; 0         ;
+;                                             ;           ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 123       ;
+; Total fan-out                               ; 1095      ;
+; Average fan-out                             ; 2.86      ;
++---------------------------------------------+-----------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                           ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+--------------------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name            ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+--------------------------------+-------------+--------------+
+; |top_level                 ; 220 (70)            ; 123 (49)                  ; 0           ; 0          ; 0            ; 0       ; 0         ; 20   ; 0            ; 0          ; |top_level                     ; top_level   ; work         ;
+;    |accelerator:compute|   ; 8 (8)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |top_level|accelerator:compute ; accelerator ; work         ;
+;    |uart_rx:recv|          ; 83 (83)             ; 38 (38)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |top_level|uart_rx:recv        ; uart_rx     ; work         ;
+;    |uart_tx:transmitter|   ; 59 (59)             ; 36 (36)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |top_level|uart_tx:transmitter ; uart_tx     ; work         ;
++----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+--------------------------------+-------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------------------+
+; State Machine - |top_level|r_SM_Main                                                                              ;
++---------------------+----------------+---------------------+----------------+---------------+---------------------+
+; Name                ; r_SM_Main.s_TX ; r_SM_Main.s_COMPUTE ; r_SM_Main.s_RX ; r_SM_Main.000 ; r_SM_Main.s_CLEANUP ;
++---------------------+----------------+---------------------+----------------+---------------+---------------------+
+; r_SM_Main.000       ; 0              ; 0                   ; 0              ; 0             ; 0                   ;
+; r_SM_Main.s_RX      ; 0              ; 0                   ; 1              ; 1             ; 0                   ;
+; r_SM_Main.s_COMPUTE ; 0              ; 1                   ; 0              ; 1             ; 0                   ;
+; r_SM_Main.s_TX      ; 1              ; 0                   ; 0              ; 1             ; 0                   ;
+; r_SM_Main.s_CLEANUP ; 0              ; 0                   ; 0              ; 1             ; 1                   ;
++---------------------+----------------+---------------------+----------------+---------------+---------------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |top_level|uart_tx:transmitter|r_SM_Main                                                                                       ;
++--------------------------+-------------------------+--------------------------+--------------------------+---------------+---------------------+
+; Name                     ; r_SM_Main.s_TX_STOP_BIT ; r_SM_Main.s_TX_DATA_BITS ; r_SM_Main.s_TX_START_BIT ; r_SM_Main.000 ; r_SM_Main.s_CLEANUP ;
++--------------------------+-------------------------+--------------------------+--------------------------+---------------+---------------------+
+; r_SM_Main.000            ; 0                       ; 0                        ; 0                        ; 0             ; 0                   ;
+; r_SM_Main.s_TX_START_BIT ; 0                       ; 0                        ; 1                        ; 1             ; 0                   ;
+; r_SM_Main.s_TX_DATA_BITS ; 0                       ; 1                        ; 0                        ; 1             ; 0                   ;
+; r_SM_Main.s_TX_STOP_BIT  ; 1                       ; 0                        ; 0                        ; 1             ; 0                   ;
+; r_SM_Main.s_CLEANUP      ; 0                       ; 0                        ; 0                        ; 1             ; 1                   ;
++--------------------------+-------------------------+--------------------------+--------------------------+---------------+---------------------+
+
+
+Encoding Type:  One-Hot
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |top_level|uart_rx:recv|r_SM_Main                                                                                                                        ;
++--------------------------+---------------------+-------------------------+--------------------------+--------------------------+----------------------+------------------+
+; Name                     ; r_SM_Main.s_CLEANUP ; r_SM_Main.s_RX_STOP_BIT ; r_SM_Main.s_RX_DATA_BITS ; r_SM_Main.s_RX_START_BIT ; r_SM_Main.s_CAN_RECV ; r_SM_Main.s_IDLE ;
++--------------------------+---------------------+-------------------------+--------------------------+--------------------------+----------------------+------------------+
+; r_SM_Main.s_IDLE         ; 0                   ; 0                       ; 0                        ; 0                        ; 0                    ; 0                ;
+; r_SM_Main.s_CAN_RECV     ; 0                   ; 0                       ; 0                        ; 0                        ; 1                    ; 1                ;
+; r_SM_Main.s_RX_START_BIT ; 0                   ; 0                       ; 0                        ; 1                        ; 0                    ; 1                ;
+; r_SM_Main.s_RX_DATA_BITS ; 0                   ; 0                       ; 1                        ; 0                        ; 0                    ; 1                ;
+; r_SM_Main.s_RX_STOP_BIT  ; 0                   ; 1                       ; 0                        ; 0                        ; 0                    ; 1                ;
+; r_SM_Main.s_CLEANUP      ; 1                   ; 0                       ; 0                        ; 0                        ; 0                    ; 1                ;
++--------------------------+---------------------+-------------------------+--------------------------+--------------------------+----------------------+------------------+
+
+
++---------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                              ;
++----------------------------------------+----------------------------------------+
+; Register name                          ; Reason for Removal                     ;
++----------------------------------------+----------------------------------------+
+; led[8]~reg0                            ; Stuck at GND due to stuck port data_in ;
+; led[9]~reg0                            ; Stuck at GND due to stuck port data_in ;
+; led[10]~reg0                           ; Stuck at GND due to stuck port data_in ;
+; led[11]~reg0                           ; Stuck at GND due to stuck port data_in ;
+; led[12]~reg0                           ; Stuck at GND due to stuck port data_in ;
+; led[13]~reg0                           ; Stuck at GND due to stuck port data_in ;
+; r_SM_Main~6                            ; Lost fanout                            ;
+; r_SM_Main~7                            ; Lost fanout                            ;
+; uart_tx:transmitter|r_SM_Main~2        ; Lost fanout                            ;
+; uart_tx:transmitter|r_SM_Main~3        ; Lost fanout                            ;
+; uart_rx:recv|r_SM_Main~8               ; Lost fanout                            ;
+; uart_rx:recv|r_SM_Main~9               ; Lost fanout                            ;
+; uart_rx:recv|r_SM_Main~10              ; Lost fanout                            ;
+; Total Number of Removed Registers = 13 ;                                        ;
++----------------------------------------+----------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 123   ;
+; Number of registers using Synchronous Clear  ; 36    ;
+; Number of registers using Synchronous Load   ; 24    ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 76    ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++--------------------------------------------------+
+; Inverted Register Statistics                     ;
++----------------------------------------+---------+
+; Inverted Register                      ; Fan out ;
++----------------------------------------+---------+
+; uart_tx:transmitter|r_Tx_Serial        ; 2       ;
+; uart_rx:recv|r_Rx_Data                 ; 13      ;
+; uart_rx:recv|r_Rx_Data_R               ; 1       ;
+; Total number of inverted registers = 3 ;         ;
++----------------------------------------+---------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------+
+; 4:1                ; 18 bits   ; 36 LEs        ; 18 LEs               ; 18 LEs                 ; Yes        ; |top_level|uart_tx:transmitter|r_Clock_Count[13] ;
+; 8:1                ; 18 bits   ; 90 LEs        ; 18 LEs               ; 72 LEs                 ; Yes        ; |top_level|uart_rx:recv|r_Clock_Count[17]        ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |top_level|uart_tx:transmitter|r_Bit_Index       ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |top_level|uart_rx:recv|r_Bit_Index              ;
+; 8:1                ; 3 bits    ; 15 LEs        ; 12 LEs               ; 3 LEs                  ; No         ; |top_level|r_SM_Main                             ;
+; 9:1                ; 2 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; No         ; |top_level|r_SM_Main                             ;
+; 11:1               ; 4 bits    ; 28 LEs        ; 20 LEs               ; 8 LEs                  ; No         ; |top_level|uart_rx:recv|r_SM_Main                ;
+; 11:1               ; 2 bits    ; 14 LEs        ; 8 LEs                ; 6 LEs                  ; No         ; |top_level|uart_rx:recv|r_SM_Main                ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------+
+
+
++-----------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart_rx:recv ;
++----------------+-------+----------------------------------+
+; Parameter Name ; Value ; Type                             ;
++----------------+-------+----------------------------------+
+; CLKS_PER_BIT   ; 434   ; Signed Integer                   ;
+; s_IDLE         ; 000   ; Unsigned Binary                  ;
+; s_CAN_RECV     ; 001   ; Unsigned Binary                  ;
+; s_RX_START_BIT ; 010   ; Unsigned Binary                  ;
+; s_RX_DATA_BITS ; 011   ; Unsigned Binary                  ;
+; s_RX_STOP_BIT  ; 100   ; Unsigned Binary                  ;
+; s_CLEANUP      ; 101   ; Unsigned Binary                  ;
++----------------+-------+----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: uart_tx:transmitter ;
++----------------+-------+-----------------------------------------+
+; Parameter Name ; Value ; Type                                    ;
++----------------+-------+-----------------------------------------+
+; CLKS_PER_BIT   ; 434   ; Signed Integer                          ;
+; s_IDLE         ; 000   ; Unsigned Binary                         ;
+; s_TX_START_BIT ; 001   ; Unsigned Binary                         ;
+; s_TX_DATA_BITS ; 010   ; Unsigned Binary                         ;
+; s_TX_STOP_BIT  ; 011   ; Unsigned Binary                         ;
+; s_CLEANUP      ; 100   ; Unsigned Binary                         ;
++----------------+-------+-----------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------+
+; Port Connectivity Checks: "uart_tx:transmitter"          ;
++-------------+--------+----------+------------------------+
+; Port        ; Type   ; Severity ; Details                ;
++-------------+--------+----------+------------------------+
+; o_Tx_Active ; Output ; Info     ; Explicitly unconnected ;
++-------------+--------+----------+------------------------+
+
+
++-------------------------------------------+
+; Port Connectivity Checks: "uart_rx:recv"  ;
++---------+-------+----------+--------------+
+; Port    ; Type  ; Severity ; Details      ;
++---------+-------+----------+--------------+
+; receive ; Input ; Info     ; Stuck at VCC ;
++---------+-------+----------+--------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; boundary_port         ; 20                          ;
+; cycloneiii_ff         ; 123                         ;
+;     ENA               ; 16                          ;
+;     ENA SCLR          ; 36                          ;
+;     ENA SLD           ; 24                          ;
+;     plain             ; 47                          ;
+; cycloneiii_lcell_comb ; 221                         ;
+;     arith             ; 34                          ;
+;         2 data inputs ; 34                          ;
+;     normal            ; 187                         ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 4                           ;
+;         2 data inputs ; 51                          ;
+;         3 data inputs ; 40                          ;
+;         4 data inputs ; 91                          ;
+;                       ;                             ;
+; Max LUT depth         ; 7.00                        ;
+; Average LUT depth     ; 3.05                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
+    Info: Processing started: Sun Mar 16 16:07:53 2025
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off FPGA_CV_Project_02 -c FPGA_CV_Project_02
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file fpga_accelerator-master/src/test/tx_tb.v
+    Info (12023): Found entity 1: test_tx File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/test/tx_tb.v Line: 21
+Info (12021): Found 1 design units, including 1 entities, in source file fpga_accelerator-master/src/test/top_level_tb.v
+    Info (12023): Found entity 1: test_top_level File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/test/top_level_tb.v Line: 16
+Warning (10275): Verilog HDL Module Instantiation warning at rx_tb.v(60): ignored dangling comma in List of Port Connections File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/test/rx_tb.v Line: 60
+Info (12021): Found 1 design units, including 1 entities, in source file fpga_accelerator-master/src/test/rx_tb.v
+    Info (12023): Found entity 1: test_rx File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/test/rx_tb.v Line: 20
+Info (12021): Found 1 design units, including 1 entities, in source file fpga_accelerator-master/src/modules/uart_tx.v
+    Info (12023): Found entity 1: uart_tx File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/uart_tx.v Line: 22
+Info (12021): Found 1 design units, including 1 entities, in source file fpga_accelerator-master/src/modules/uart_rx.v
+    Info (12023): Found entity 1: uart_rx File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/uart_rx.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file fpga_accelerator-master/src/modules/top_level.v
+    Info (12023): Found entity 1: top_level File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/top_level.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file fpga_accelerator-master/src/modules/register.v
+    Info (12023): Found entity 1: register File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/register.v Line: 9
+Info (12021): Found 1 design units, including 1 entities, in source file fpga_accelerator-master/src/modules/regfile.v
+    Info (12023): Found entity 1: regfile File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/regfile.v Line: 1
+Info (12021): Found 0 design units, including 0 entities, in source file fpga_accelerator-master/src/modules/old_top_level.v
+Info (12021): Found 1 design units, including 1 entities, in source file fpga_accelerator-master/src/modules/accelerator.v
+    Info (12023): Found entity 1: accelerator File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/accelerator.v Line: 1
+Info (12021): Found 2 design units, including 2 entities, in source file convolution_top_module.sv
+    Info (12023): Found entity 1: convolution_top_module File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/convolution_top_module.sv Line: 1
+    Info (12023): Found entity 2: binary_convolution File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/convolution_top_module.sv Line: 121
+Info (12021): Found 1 design units, including 1 entities, in source file uart_tx_f_map.sv
+    Info (12023): Found entity 1: uart_tx_f_map File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/uart_tx_f_map.sv Line: 1
+Warning (10236): Verilog HDL Implicit Net warning at convolution_top_module.sv(97): created implicit net for "reset" File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/convolution_top_module.sv Line: 97
+Warning (10236): Verilog HDL Implicit Net warning at convolution_top_module.sv(97): created implicit net for "RxD" File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/convolution_top_module.sv Line: 97
+Warning (10236): Verilog HDL Implicit Net warning at convolution_top_module.sv(97): created implicit net for "data_byte" File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/convolution_top_module.sv Line: 97
+Info (12127): Elaborating entity "top_level" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at top_level.v(33): object "A" assigned a value but never read File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/top_level.v Line: 33
+Warning (10036): Verilog HDL or VHDL warning at top_level.v(34): object "B" assigned a value but never read File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/top_level.v Line: 34
+Warning (10230): Verilog HDL assignment warning at top_level.v(94): truncated value with size 32 to match size of target (1) File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/top_level.v Line: 94
+Info (12128): Elaborating entity "uart_rx" for hierarchy "uart_rx:recv" File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/top_level.v Line: 149
+Warning (10230): Verilog HDL assignment warning at uart_rx.v(67): truncated value with size 32 to match size of target (18) File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/uart_rx.v Line: 67
+Warning (10230): Verilog HDL assignment warning at uart_rx.v(73): truncated value with size 32 to match size of target (18) File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/uart_rx.v Line: 73
+Warning (10230): Verilog HDL assignment warning at uart_rx.v(78): truncated value with size 32 to match size of target (3) File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/uart_rx.v Line: 78
+Warning (10230): Verilog HDL assignment warning at uart_rx.v(88): truncated value with size 32 to match size of target (18) File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/uart_rx.v Line: 88
+Info (12128): Elaborating entity "accelerator" for hierarchy "accelerator:compute" File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/top_level.v Line: 159
+Info (12128): Elaborating entity "uart_tx" for hierarchy "uart_tx:transmitter" File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/top_level.v Line: 161
+Warning (10230): Verilog HDL assignment warning at uart_tx.v(85): truncated value with size 32 to match size of target (18) File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/uart_tx.v Line: 85
+Warning (10230): Verilog HDL assignment warning at uart_tx.v(103): truncated value with size 32 to match size of target (18) File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/uart_tx.v Line: 103
+Warning (10230): Verilog HDL assignment warning at uart_tx.v(113): truncated value with size 32 to match size of target (3) File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/uart_tx.v Line: 113
+Warning (10230): Verilog HDL assignment warning at uart_tx.v(133): truncated value with size 32 to match size of target (18) File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/uart_tx.v Line: 133
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "led[8]" is stuck at GND File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/top_level.v Line: 52
+    Warning (13410): Pin "led[9]" is stuck at GND File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/top_level.v Line: 52
+    Warning (13410): Pin "led[10]" is stuck at GND File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/top_level.v Line: 52
+    Warning (13410): Pin "led[11]" is stuck at GND File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/top_level.v Line: 52
+    Warning (13410): Pin "led[12]" is stuck at GND File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/top_level.v Line: 52
+    Warning (13410): Pin "led[13]" is stuck at GND File: E:/Data_Files/Educational/Computer Vision/FPGA CV project 02/fpga_accelerator-master/src/modules/top_level.v Line: 52
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 7 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 256 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 3 input pins
+    Info (21059): Implemented 17 output pins
+    Info (21061): Implemented 236 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 23 warnings
+    Info: Peak virtual memory: 4818 megabytes
+    Info: Processing ended: Sun Mar 16 16:07:59 2025
+    Info: Elapsed time: 00:00:06
+    Info: Total CPU time (on all processors): 00:00:13
+
+

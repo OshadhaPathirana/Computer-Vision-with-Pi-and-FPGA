@@ -1,0 +1,186 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dE:/Data_Files/Educational/Computer Vision/FPFA Codes
+vbin_conv_uart
+Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z2 !s110 1741381087
+!i10b 1
+!s100 W>HnXKNTLO85c3GhP`:1L1
+Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IRgQGD0GG8;9mngl6C:i@P2
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+S1
+R0
+w1741380693
+8E:/Data_Files/Educational/Computer Vision/FPFA Codes/bin_conv_uart.sv
+FE:/Data_Files/Educational/Computer Vision/FPFA Codes/bin_conv_uart.sv
+!i122 3
+L0 1 144
+Z5 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z6 !s108 1741381087.000000
+!s107 E:/Data_Files/Educational/Computer Vision/FPFA Codes/bin_conv_uart.sv|
+!s90 -reportprogress|300|-work|work|E:/Data_Files/Educational/Computer Vision/FPFA Codes/bin_conv_uart.sv|
+!i113 1
+Z7 o-work work
+Z8 tCvgOpt 0
+vtb_bin_conv_uart
+R1
+!s110 1741381123
+!i10b 1
+!s100 ]C?HjYNiooE[LhcPlo^e31
+R3
+I2_MzKbT^0a70G`G4Hzba90
+R4
+S1
+R0
+w1741381112
+8E:/Data_Files/Educational/Computer Vision/FPFA Codes/tb_bin_conv_uart.sv
+FE:/Data_Files/Educational/Computer Vision/FPFA Codes/tb_bin_conv_uart.sv
+!i122 6
+L0 2 57
+R5
+r1
+!s85 0
+31
+!s108 1741381123.000000
+!s107 E:/Data_Files/Educational/Computer Vision/FPFA Codes/tb_bin_conv_uart.sv|
+!s90 -reportprogress|300|-work|work|E:/Data_Files/Educational/Computer Vision/FPFA Codes/tb_bin_conv_uart.sv|
+!i113 1
+R7
+R8
+vtb_uart_buffered_echo
+R1
+!s110 1741382567
+!i10b 1
+!s100 MYBQQaze?<Wi=WZo@09g41
+R3
+IC4F_7R<Xm[CcznC`WcZ=40
+R4
+S1
+R0
+w1741382538
+Z9 8E:/Data_Files/Educational/Computer Vision/FPFA Codes/tb_uart_echo_continuos.sv
+Z10 FE:/Data_Files/Educational/Computer Vision/FPFA Codes/tb_uart_echo_continuos.sv
+!i122 12
+Z11 L0 2 102
+R5
+r1
+!s85 0
+31
+!s108 1741382567.000000
+!s107 E:/Data_Files/Educational/Computer Vision/FPFA Codes/tb_uart_echo_continuos.sv|
+Z12 !s90 -reportprogress|300|-work|work|E:/Data_Files/Educational/Computer Vision/FPFA Codes/tb_uart_echo_continuos.sv|
+!i113 1
+R7
+R8
+vtb_uart_echo_continuos
+R1
+!s110 1741382950
+!i10b 1
+!s100 LD0?j9FLfAnAF`Eh8KNnG2
+R3
+IKTRS3DgoA25@=?IfbgHIm1
+R4
+S1
+R0
+w1741382933
+R9
+R10
+!i122 16
+R11
+R5
+r1
+!s85 0
+31
+!s108 1741382950.000000
+Z13 !s107 E:/Data_Files/Educational/Computer Vision/FPFA Codes/tb_uart_echo_continuos.sv|
+R12
+!i113 1
+R7
+R8
+vuart_echo_continuos
+R1
+!s110 1741382947
+!i10b 1
+!s100 H[[[Vn6T>?Q^7VN1Z22;30
+R3
+IPehb<<0c6D@7nVTIiA3XJ2
+R4
+S1
+R0
+w1741382915
+8E:/Data_Files/Educational/Computer Vision/FPFA Codes/uart_echo_continuos.sv
+FE:/Data_Files/Educational/Computer Vision/FPFA Codes/uart_echo_continuos.sv
+!i122 15
+L0 1 120
+R5
+r1
+!s85 0
+31
+!s108 1741382947.000000
+!s107 E:/Data_Files/Educational/Computer Vision/FPFA Codes/uart_echo_continuos.sv|
+!s90 -reportprogress|300|-work|work|E:/Data_Files/Educational/Computer Vision/FPFA Codes/uart_echo_continuos.sv|
+!i113 1
+R7
+R8
+vuart_rx
+R1
+R2
+!i10b 1
+!s100 m<F::6A>zzmQicD=VKA2<2
+R3
+I?S641bZ5DU8bU1<V151Rj1
+R4
+S1
+R0
+w1739106725
+8E:/Data_Files/Educational/Computer Vision/FPFA Codes/uart_rx.sv
+FE:/Data_Files/Educational/Computer Vision/FPFA Codes/uart_rx.sv
+!i122 4
+L0 1 49
+R5
+r1
+!s85 0
+31
+R6
+!s107 E:/Data_Files/Educational/Computer Vision/FPFA Codes/uart_rx.sv|
+!s90 -reportprogress|300|-work|work|E:/Data_Files/Educational/Computer Vision/FPFA Codes/uart_rx.sv|
+!i113 1
+R7
+R8
+vuart_tx
+R1
+R2
+!i10b 1
+!s100 T]eDXlBgFFXj^0D=M[5UN0
+R3
+IzQl10bKglUTjm@`03kYM?3
+R4
+S1
+R0
+w1739107369
+8E:/Data_Files/Educational/Computer Vision/FPFA Codes/uart_tx.sv
+FE:/Data_Files/Educational/Computer Vision/FPFA Codes/uart_tx.sv
+!i122 5
+L0 1 45
+R5
+r1
+!s85 0
+31
+R6
+!s107 E:/Data_Files/Educational/Computer Vision/FPFA Codes/uart_tx.sv|
+!s90 -reportprogress|300|-work|work|E:/Data_Files/Educational/Computer Vision/FPFA Codes/uart_tx.sv|
+!i113 1
+R7
+R8

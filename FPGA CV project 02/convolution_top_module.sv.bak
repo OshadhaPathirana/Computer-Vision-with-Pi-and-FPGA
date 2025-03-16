@@ -1,0 +1,107 @@
+module top_level(
+    input clk,
+    input in_RxD,
+    input sw_reset,
+    output reg out_TxD,
+    output reg [15:0] led
+);
+
+    localparam s_IDLE = 3'b000;
+    localparam s_RX = 3'b001;
+    localparam s_COMPUTE = 3'b010;
+    localparam s_TX = 3'b011;
+    localparam s_CLEANUP = 3'b100;
+    
+    parameter IMG_SIZE = 8; // 8x8 image (modify as needed)
+    
+    reg [7:0] image[0:IMG_SIZE-1][0:IMG_SIZE-1];
+    reg [7:0] feature_map[0:IMG_SIZE-1][0:IMG_SIZE-1];
+    
+    reg [2:0] r_SM_Main = 0;
+    reg [3:0] row = 0, col = 0;
+    
+    wire done_reading;
+    wire [7:0] data_byte;
+    reg r_done_reading = 0;
+    
+    wire done_convolution;
+    reg r_done_convolution = 0;
+    
+    wire done_transmitting;
+    reg r_done_transmitting = 0;
+    reg r_transmit = 0;
+    
+    reg RxD;
+    wire TxD;
+    
+    reg rx_inter;
+    reg tx_inter;
+    reg done_tx_inter;
+    
+    always @(posedge clk) begin
+        {RxD, rx_inter} <= { rx_inter, in_RxD };
+        {out_TxD, tx_inter} <= { tx_inter, TxD };
+        led[7:0] <= r_SM_Main;
+    end
+    
+    always @(posedge clk) begin
+        if (sw_reset) begin
+            r_SM_Main <= s_IDLE;
+            row <= 0;
+            col <= 0;
+            r_done_reading <= 0;
+            r_done_convolution <= 0;
+            r_done_transmitting <= 0;
+            r_transmit <= 0;
+        end else begin
+            case (r_SM_Main)
+                s_IDLE: begin
+                    row <= 0;
+                    col <= 0;
+                    r_SM_Main <= s_RX;
+                end
+                s_RX: begin
+                    if (r_done_reading) begin
+                        image[row][col] <= data_byte;
+                        if (col < IMG_SIZE-1) col <= col + 1;
+                        else if (row < IMG_SIZE-1) begin
+                            col <= 0;
+                            row <= row + 1;
+                        end else begin
+                            r_SM_Main <= s_COMPUTE;
+                        end
+                        r_done_reading <= 0;
+                    end else begin
+                        r_done_reading <= done_reading;
+                    end
+                end
+                s_COMPUTE: begin
+                    if (r_done_convolution) begin
+                        r_SM_Main <= s_TX;
+                        r_done_convolution <= 0;
+                    end else begin
+                        r_done_convolution <= done_convolution;
+                    end
+                end
+                s_TX: begin
+                    if (r_done_transmitting) begin
+                        r_SM_Main <= s_CLEANUP;
+                        r_transmit <= 0;
+                        r_done_transmitting <= 0;
+                    end else begin
+                        r_transmit <= 1;
+                        r_done_transmitting <= done_transmitting;
+                    end
+                end
+                s_CLEANUP: begin
+                    r_SM_Main <= s_IDLE;
+                end
+                default: r_SM_Main <= s_IDLE;
+            endcase
+        end
+    end
+
+    uart_rx recv(clk, sw_reset, 1'b1, RxD, done_reading, data_byte);
+    binary_convolution conv(clk, image, feature_map, done_convolution);
+    uart_tx transmitter(clk, sw_reset, r_transmit, feature_map, TxD, done_transmitting);
+endmodule

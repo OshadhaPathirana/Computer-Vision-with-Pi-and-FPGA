@@ -4,39 +4,19 @@
 			"name" : "Top",
 			"pins" : [
 				{
-					"name" : "tx",
+					"name" : "uart_tx",
 					"strict" : false
 				},
 				{
-					"name" : "leds[0]",
+					"name" : "led_rx",
 					"strict" : false
 				},
 				{
-					"name" : "leds[1]",
+					"name" : "led_tx",
 					"strict" : false
 				},
 				{
-					"name" : "leds[2]",
-					"strict" : false
-				},
-				{
-					"name" : "leds[3]",
-					"strict" : false
-				},
-				{
-					"name" : "leds[4]",
-					"strict" : false
-				},
-				{
-					"name" : "leds[5]",
-					"strict" : false
-				},
-				{
-					"name" : "leds[6]",
-					"strict" : false
-				},
-				{
-					"name" : "leds[7]",
+					"name" : "data_ready",
 					"strict" : false
 				},
 				{
@@ -48,7 +28,7 @@
 					"strict" : false
 				},
 				{
-					"name" : "rx",
+					"name" : "uart_rx",
 					"strict" : false
 				}
 			]
