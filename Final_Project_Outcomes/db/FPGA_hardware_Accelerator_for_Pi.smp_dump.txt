@@ -1,0 +1,7 @@
+
+State Machine - |uart_edge_detection|state
+Name state.SEND state.PROCESS state.RECEIVE state.IDLE 
+state.IDLE 0 0 0 0 
+state.RECEIVE 0 0 1 1 
+state.PROCESS 0 1 0 1 
+state.SEND 1 0 0 1 
