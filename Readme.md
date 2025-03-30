@@ -26,6 +26,15 @@ This project explores the integration of **FPGA acceleration** with a **Raspberr
 
 ---
 
+## 📸 Process Visualization
+To better understand the data flow and results, two images have been added:
+- 🖼️ **`uart_03.png`** - Demonstrates the **UART communication** between the Raspberry Pi and FPGA, showing the sent and received feature maps.
+- 🖼️ **`CV02.png`** - Displays the **handwritten digit processing** pipeline, where an image is binarized, sent to the FPGA, and the **6×6 feature map** is extracted.
+
+These images highlight the key processing steps and validate the system’s expected behavior. OpenCV can now utilize the extracted feature map for further image processing tasks. 
+
+---
+
 ## 🔎 Current Status
 ✔️ The FPGA **receives** the **8×8 binary matrix** and **returns a 6×6 feature map**.  
 ✔️ **OpenCV** is used on the Raspberry Pi to further process the received feature map.  
