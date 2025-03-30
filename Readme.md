@@ -37,7 +37,7 @@ To better understand the data flow and results, two images have been added:
 ![CV02](Images/CV02.png)
 
 - 🖼️This the test image used for CV.py file
-![test_img](Raspberry Pi-4 Codes/test_img.png)
+![test_img](Images/test_img.png)
 
 - 🖼️ Displays the hardware setup of the project. **DE10-LITE** with **PI4-B**
 ![HW](Images/HW.jpg)
