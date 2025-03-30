@@ -7,10 +7,10 @@ This project explores the integration of **FPGA acceleration** with a **Raspberr
 
 ## 📁 Project Structure
 ### 🔹 Main Folders:
-1. **🟢 Final_Project_Outcomes** - Contains the final **SystemVerilog** implementations.
-2. **🟠 Raspberry_Pi-4_Codes** - Contains the final **Raspberry Pi** scripts for processing images and interfacing with the FPGA.
+1. **📁 Final_Project_Outcomes** - Contains the final **SystemVerilog** implementations.
+2. **📁 Raspberry_Pi-4_Codes** - Contains the final **Raspberry Pi** scripts for processing images and interfacing with the FPGA.
 
-### **🟢 Final_Project_Outcomes (FPGA Implementation)**
+### **📁 Final_Project_Outcomes (FPGA Implementation)**
 📂 This folder contains SystemVerilog modules used for **UART communication** and **edge detection processing**:
 - 🏆 `uart_edge_detection.sv` - **Top module** performing binary convolution-based edge detection.
 - 🔄 `uart_echo.sv` - Simple UART echo test module.
@@ -18,7 +18,7 @@ This project explores the integration of **FPGA acceleration** with a **Raspberr
 - 📥 `uart_rx.sv` - UART **receiver** module.
 - 📤 `uart_tx.sv` - UART **transmitter** module.
 
-### **🟠 Raspberry_Pi-4_Codes (Software Implementation)**
+### **📁 Raspberry_Pi-4_Codes (Software Implementation)**
 📂 This folder contains Python scripts for communication and image processing:
 - 📡 `accelerator_UART_01.py` to `accelerator_UART_03.py` - Test scripts sending an **8×8 binary matrix** to the FPGA and receiving a **6×6 feature map**.
 - ✍️ `CV_01.py`, `CV_02.py` - Final scripts that **read a handwritten number image**, convert it into an **8×8 binary matrix**, and send it to the FPGA for processing.
