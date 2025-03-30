@@ -18,7 +18,7 @@ def send_pixel_data(pixel_data):
 def receive_processed_data():
     """Receive processed pixel data from the FPGA."""
     if uart.in_waiting > 0:
-        data = uart.read(10)  # Read one byte
+        data = uart.read(1)  # Read one byte
         print(f"Received byte: {data}")
         print(f"Binary: {bin(int.from_bytes(data, 'big'))[2:].zfill(8)}")
         return data[0] if data else None
@@ -28,7 +28,7 @@ def receive_processed_data():
 if __name__ == "__main__":
     try:
         # Send pixel data to FPGA
-        pixel_data = 0b11010001  # Example pixel value
+        pixel_data = 0b11010011  # Example pixel value
         send_pixel_data(pixel_data)
         print("Data sent:", pixel_data)
 
