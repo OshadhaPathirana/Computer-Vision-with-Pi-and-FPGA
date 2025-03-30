@@ -28,13 +28,19 @@ This project explores the integration of **FPGA acceleration** with a **Raspberr
 
 ## 📸 Process Visualization
 To better understand the data flow and results, two images have been added:
-- 🖼️ **`uart_03.png`** - Demonstrates the **UART communication** between the Raspberry Pi and FPGA, showing the sent and received feature maps.
+- 🖼️ Demonstrates the **UART communication** between the Raspberry Pi and FPGA, showing the sent and received feature maps.
 
-![uart_03](uart_03.png)
+![uart_03](Images/uart_03.png)
 
-- 🖼️ **`CV02.png`** - Displays the **handwritten digit processing** pipeline, where an image is binarized, sent to the FPGA, and the **6×6 feature map** is extracted.
+- 🖼️ Displays the **handwritten digit processing** pipeline, where an image is binarized, sent to the FPGA, and the **6×6 feature map** is extracted.
 
-![CV02](CV02.png)
+![CV02](Images/CV02.png)
+
+- 🖼️This the test image used for CV.py file
+![test_img](Raspberry Pi-4 Codes/test_img.png)
+
+- 🖼️ Displays the hardware setup of the project. **DE10-LITE** with **PI4-B**
+![HW](Images/HW.jpg)
 
 ---
 
