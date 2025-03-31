@@ -1,7 +1,9 @@
 # 🚀 **Computer Vision with Pi and FPGA**
 
 ## 📝 Project Overview
-This project explores the integration of **FPGA acceleration** with a **Raspberry Pi 4B** for computer vision tasks. The primary goal is to develop a **binary convolutional neural network (CNN) accelerator** using a **DE10-Lite FPGA**. While the project is not fully functional yet due to some glitches, the foundation has been laid for further improvements and optimization.
+This project explores the integration of **FPGA acceleration with a Raspberry Pi 4B for computer vision tasks**. The goal is to develop a **binary convolutional neural network (CNN)** accelerator using a **DE10-Lite FPGA**, enabling efficient edge processing. The FPGA receives an 8×8 binary image matrix from the Raspberry Pi, performs binary convolution-based edge detection, and returns a 6×6 feature map for further processing.
+
+Testing includes **UART communication** verification and handwritten digit processing using OpenCV. The project is still in development, with ongoing debugging and improvements. Future iterations will focus on optimizing FPGA processing and implementing a complete CNN accelerator for real-time image analysis. This initiative lays the foundation for low-power, high-speed vision processing on embedded systems. 
 
 ---
 
